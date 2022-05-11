@@ -15,6 +15,7 @@
 	margin: 0 auto;
 }
 main {
+	width: calc(100% - 152px);
 	padding: 19px 34px 25px;
 }
 .title {
@@ -24,6 +25,7 @@ main {
 	color: $main;
 }
 .button {
+	display: block;
 	height: 24px;
 	font-weight: 400;
 	font-size: 12px;
@@ -33,4 +35,20 @@ main {
 	border-radius: 5px;
 	padding: 0 15px;
 	margin-top: 10px;
+
+	&_edit {
+		position: absolute;
+		top: -14px;
+		right: 0;
+	}
+	&_form {
+		position: absolute;
+		right: 0;
+	}
+	&_submit {
+		background-color: #52CF4F;
+	}
+	&_disabled {
+		background-color: #AFAFAF;
+	}
 }
