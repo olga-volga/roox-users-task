@@ -48,4 +48,13 @@
             text-decoration: underline;
         }
     }
+    &__count {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+        /* identical to box height */
+        text-align: right;
+        color: $main;
+        margin-top: 10px;
+    }
 }

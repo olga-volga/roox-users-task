@@ -7,6 +7,7 @@ import './userList.scss';
 const UserList = () => {
     const [process, setProcess] = useState('loading');
     const [users, setUsers] = useState(null);
+    const [count, setCount] = useState(0);
 
     const {getUsers} = requestService();
 
@@ -14,10 +15,13 @@ const UserList = () => {
         loadUsers();
     }, []);
 
+    const onUsersLoaded = (data) => {
+        setUsers(data);
+        setCount(data.length);
+    }
     const loadUsers = () => {
         getUsers()
-            //.then(res => console.log(res))
-            .then(res => setUsers(res))
+            .then(onUsersLoaded)
             .then(() => setProcess('confirmed'))
     }
     const renderUserItems = (users) => {
@@ -37,10 +41,13 @@ const UserList = () => {
     const spinner = process === 'loading' ? <div>Loading...</div> : null;
     const content = process === 'confirmed' ? renderUserItems(users) : null;
     return (
-        <ul className="user__list">
-            {spinner}
-            {content}
-        </ul>
+        <>
+            <ul className="user__list">
+                {spinner}
+                {content}
+            </ul>
+            <p className="user__count">Found {count} users</p>
+        </>
     )
 }
 
