@@ -1,0 +1,15 @@
+@import '../../style/variables.scss';
+
+.aside {
+    width: 152px;
+    height: 1028px;
+    background-color: #BDBDBD;
+    padding: 35px 20px 0;
+
+    &__title {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+        color: $main;
+    }
+}

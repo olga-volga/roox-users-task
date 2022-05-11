@@ -1,0 +1,51 @@
+@import '../../style/variables.scss';
+
+.user {
+    &__list {
+        margin-top: 15px;
+    }
+    &__item {
+        position: relative;
+        width: 420px;
+        height: 73px;
+        background-color: #F3F3F3;
+        border-radius: 8px;
+        padding: 10px;
+        margin-top: 20px;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+    &__name,
+    &__city,
+    &__company {
+        font-weight: 400;
+        font-size: 11px;
+        line-height: 13px;
+        /* identical to box height */
+        color: $main;
+
+        span {
+            color: #A3A3A3;
+        }
+    }
+    &__city,
+    &__company {
+        margin-top: 7px;
+    }
+    &__details {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+        /* identical to box height */
+        color: $accent;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

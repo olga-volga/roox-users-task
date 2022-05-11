@@ -8,3 +8,29 @@
 	font-family: $font-main;
 	font-style: normal;
 }
+
+.app {
+	display: flex;
+	width: 665px;
+	margin: 0 auto;
+}
+main {
+	padding: 19px 34px 25px;
+}
+.page__title {
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 16px;
+	color: $main;
+}
+.button {
+	height: 24px;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 14px;
+	color: $light;
+	background-color: $accent;
+	border-radius: 5px;
+	padding: 0 15px;
+	margin-top: 10px;
+}
