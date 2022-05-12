@@ -1,4 +1,6 @@
 const requestService = () => {
+    const api = 'https://jsonplaceholder.typicode.com/users';
+    
     const getResource = async (url) => {
         const result = await fetch(url);
         if (!result.ok) {
@@ -7,11 +9,15 @@ const requestService = () => {
         return result.json();
     };
     const getUsers = async () => {
-        const result = await getResource('https://jsonplaceholder.typicode.com/users');
+        const result = await getResource(api);
         return result;
     };
+    const getUser = async (id) => {
+        const result = await getResource(api);
+        return result[id];
+    };
 
-    return {getUsers};
+    return {getUsers, getUser};
 }
 
 export default requestService;
