@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 
 import requestService from '../../services/requestService';
 
@@ -32,7 +33,7 @@ const UserList = () => {
                     <p className="user__name"><span>Name and surname:</span> {name}</p>
                     <p className="user__city"><span>City:</span> {address.city}</p>
                     <p className="user__company"><span>Company:</span> {company.name}</p>
-                    <a href="#" className="user__details">See details</a>
+                    <Link to={`/profile/${id}`} className="user__details">See details</Link>
                 </li>
             )
         });
