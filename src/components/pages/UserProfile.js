@@ -7,7 +7,8 @@ import Form from '../form/Form';
 const UserProfile = () => {
     const [process, setProcess] = useState('loading');
     const [data, setData] = useState(null);
-    
+    const [readonly, setReadonly] = useState(true);
+
     const {id} = useParams();
     const {getUser} = requestService();
 
@@ -20,12 +21,15 @@ const UserProfile = () => {
             .then(res => setData(res))
             .then(() => setProcess('confirmed'))
     };
+    const enableEdit = () => {
+        setReadonly(false);
+    };
     const spinner = process === 'loading' ? <div>Loading...</div> : null;
-    const content = process === 'confirmed' ? <Form data={data} /> : null;
+    const content = process === 'confirmed' ? <Form data={data} readonly={readonly} /> : null;
     return (
         <section style={{position: 'relative'}} className="profile">
             <h2 className="title">User Profile</h2>
-            <button type="button" className="button button_edit">Edit</button>
+            <button type="button" onClick={enableEdit} className="button button_edit">Edit</button>
             {spinner}
             {content}
         </section>
