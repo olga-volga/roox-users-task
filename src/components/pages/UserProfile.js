@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 
 import requestService from '../../services/requestService';
-import Form from '../form/Form';
+import UserForm from '../userForm/UserForm';
 
 const UserProfile = () => {
     const [process, setProcess] = useState('loading');
@@ -25,7 +25,7 @@ const UserProfile = () => {
         setReadonly(false);
     };
     const spinner = process === 'loading' ? <div>Loading...</div> : null;
-    const content = process === 'confirmed' ? <Form data={data} readonly={readonly} /> : null;
+    const content = process === 'confirmed' ? <UserForm data={data} readonly={readonly} /> : null;
     return (
         <section style={{position: 'relative'}} className="profile">
             <h2 className="title">User Profile</h2>
