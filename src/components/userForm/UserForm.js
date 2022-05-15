@@ -14,7 +14,7 @@ const UserInput = ({label, ...props}) => {
     )
 };
 
-const UserForm = ({data, readonly}) => {
+const UserForm = ({data, readonly, toggleEdit}) => {
     const {name, username, email, address, phone, website} = data;
     let btnClass = readonly ? 'button_disabled' : 'button_submit';
 
@@ -41,7 +41,10 @@ const UserForm = ({data, readonly}) => {
                 phone: Yup.string().required(),
                 website: Yup.string().required()
             })}
-            onSubmit={(values) => console.log(JSON.stringify(values))}
+            onSubmit={(values) => {
+                console.log(JSON.stringify(values));
+                toggleEdit(true);
+            }}
         >
             <>
                 <Form id="userForm" className="form">

@@ -21,15 +21,15 @@ const UserProfile = () => {
             .then(res => setData(res))
             .then(() => setProcess('confirmed'))
     };
-    const enableEdit = () => {
-        setReadonly(false);
+    const toggleEdit = (value) => {
+        setReadonly(value);
     };
     const spinner = process === 'loading' ? <div>Loading...</div> : null;
-    const content = process === 'confirmed' ? <UserForm data={data} readonly={readonly} /> : null;
+    const content = process === 'confirmed' ? <UserForm data={data} readonly={readonly} toggleEdit={toggleEdit} /> : null;
     return (
         <section style={{position: 'relative'}} className="profile">
             <h2 className="title">User Profile</h2>
-            <button type="button" onClick={enableEdit} className="button button_edit">Edit</button>
+            <button type="button" onClick={() => toggleEdit(false)} className="button button_edit">Edit</button>
             {spinner}
             {content}
         </section>
