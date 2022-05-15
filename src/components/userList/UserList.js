@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 
 import requestService from '../../services/requestService';
+import generateContent from '../../utils/generateContent';
 
 import './userList.scss';
 
@@ -24,6 +25,7 @@ const UserList = () => {
         getUsers()
             .then(onUsersLoaded)
             .then(() => setProcess('confirmed'))
+            .catch(() => setProcess('error'))
     }
     const renderUserItems = (users) => {
         const items = users.map(item => {
@@ -37,16 +39,15 @@ const UserList = () => {
                 </li>
             )
         });
-        return items;
+        return (
+            <ul className="user__list">
+                {items}
+            </ul>
+        )
     }
-    const spinner = process === 'loading' ? <div>Loading...</div> : null;
-    const content = process === 'confirmed' ? renderUserItems(users) : null;
     return (
         <>
-            <ul className="user__list">
-                {spinner}
-                {content}
-            </ul>
+            {generateContent(process, () => renderUserItems(users))}
             <p className="user__count">Found {count} users</p>
         </>
     )

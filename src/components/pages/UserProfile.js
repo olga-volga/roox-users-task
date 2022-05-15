@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 
 import requestService from '../../services/requestService';
+import generateContent from '../../utils/generateContent';
 import UserForm from '../userForm/UserForm';
 
 const UserProfile = () => {
@@ -20,18 +21,16 @@ const UserProfile = () => {
         getUser(id - 1)
             .then(res => setData(res))
             .then(() => setProcess('confirmed'))
+            .catch(() => setProcess('error'))
     };
     const toggleEdit = (value) => {
         setReadonly(value);
     };
-    const spinner = process === 'loading' ? <div>Loading...</div> : null;
-    const content = process === 'confirmed' ? <UserForm data={data} readonly={readonly} toggleEdit={toggleEdit} /> : null;
     return (
         <section style={{position: 'relative'}} className="profile">
             <h2 className="title">User Profile</h2>
             <button type="button" onClick={() => toggleEdit(false)} className="button button_edit">Edit</button>
-            {spinner}
-            {content}
+            {generateContent(process, UserForm, {data, readonly, toggleEdit})}
         </section>
     )
 }
