@@ -6,7 +6,7 @@ import generateContent from '../../utils/generateContent';
 
 import './userList.scss';
 
-const UserList = () => {
+const UserList = ({sort}) => {
     const [process, setProcess] = useState('loading');
     const [users, setUsers] = useState(null);
     const [count, setCount] = useState(0);
@@ -15,18 +15,35 @@ const UserList = () => {
 
     useEffect(() => {
         loadUsers();
-    }, []);
+    }, [sort]);
 
-    const onUsersLoaded = (data) => {
+    const sortUsers = (a, b, key1, key2) => {
+        if (a[key1][key2] > b[key1][key2]) return 1;
+        if (a[key1][key2] == b[key1][key2]) return 0;
+        if (a[key1][key2] < b[key1][key2]) return -1;
+    };
+
+    const onUsersLoaded = (res) => {
+        let data = [];
+        switch(sort) {
+            case 'city':
+                data = res.slice().sort((a, b) => sortUsers(a, b, 'address', 'city'));
+                break;
+            case 'company':
+                data = res.slice().sort((a, b) => sortUsers(a, b, 'company', 'name'));
+                break;
+            default:
+                data = res;
+        }
         setUsers(data);
         setCount(data.length);
-    }
+    };
     const loadUsers = () => {
         getUsers()
             .then(onUsersLoaded)
             .then(() => setProcess('confirmed'))
             .catch(() => setProcess('error'))
-    }
+    };
     const renderUserItems = (users) => {
         const items = users.map(item => {
             const {id, name, address, company} = item;
@@ -44,7 +61,7 @@ const UserList = () => {
                 {items}
             </ul>
         )
-    }
+    };
     return (
         <>
             {generateContent(process, () => renderUserItems(users))}
