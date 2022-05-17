@@ -9,6 +9,9 @@
 * Formik
 * Yup
 
+**Demo:**
+[Users React App](https://roox-users-task.herokuapp.com/)
+
 **To run this project locally:**
 * clone with `https://github.com/olga-volga/roox-users-task.git`
 * `cd users`
