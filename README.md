@@ -1,4 +1,21 @@
-# Getting Started with Create React App
+# Users React App
+**Task for a frontend developer position**
+
+**In this project I practiced:**
+* React
+* React Hooks
+* react-create-app
+* react-router
+* Formik
+* Yup
+
+**To run this project locally:**
+* clone with `https://github.com/olga-volga/roox-users-task.git`
+* `cd users`
+* `npm install`
+* `npm start`
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
