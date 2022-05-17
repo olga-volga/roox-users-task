@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 
-import requestService from '../../services/requestService';
+import useRequestService from '../../services/useRequestService';
 import generateContent from '../../utils/generateContent';
 import UserForm from '../userForm/UserForm';
 
 const UserProfile = () => {
-    const [process, setProcess] = useState('loading');
     const [data, setData] = useState(null);
     const [readonly, setReadonly] = useState(true);
 
     const {id} = useParams();
-    const {getUser} = requestService();
+    const {process, setProcess, getUser} = useRequestService();
 
     useEffect(() => {
         loadUserData();
@@ -21,7 +20,6 @@ const UserProfile = () => {
         getUser(id - 1)
             .then(res => setData(res))
             .then(() => setProcess('confirmed'))
-            .catch(() => setProcess('error'))
     };
     const toggleEdit = (value) => {
         setReadonly(value);

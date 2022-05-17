@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 
-import requestService from '../../services/requestService';
+import useRequestService from '../../services/useRequestService';
 import generateContent from '../../utils/generateContent';
 
 import './userList.scss';
 
 const UserList = ({sort}) => {
-    const [process, setProcess] = useState('loading');
     const [users, setUsers] = useState(null);
     const [count, setCount] = useState(0);
 
-    const {getUsers} = requestService();
+    const {process, setProcess, getUsers} = useRequestService();
 
     useEffect(() => {
         loadUsers();
@@ -42,7 +41,6 @@ const UserList = ({sort}) => {
         getUsers()
             .then(onUsersLoaded)
             .then(() => setProcess('confirmed'))
-            .catch(() => setProcess('error'))
     };
     const renderUserItems = (users) => {
         const items = users.map(item => {
